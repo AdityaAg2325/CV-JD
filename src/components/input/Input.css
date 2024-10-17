@@ -1,0 +1,21 @@
+.input-parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.textfield-parent{
+    max-width: 15rem;
+    max-height: 3rem;
+}
+.error-container{
+    padding-bottom: 3.5rem;
+    max-width: 12rem;
+}
+.text-input-container{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}

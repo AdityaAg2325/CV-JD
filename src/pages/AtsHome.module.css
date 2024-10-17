@@ -1,0 +1,80 @@
+.atsContainer{
+    font-size: 5rem;
+    width: 85rem;
+    margin: 2rem 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.uploadParent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7rem;
+    padding-top: 2rem;
+}
+
+.heading{
+    font-size: 2rem;
+    font-weight: 500;
+    color: #243c76;
+    margin-top: 3rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.sliderParent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-bottom: 1rem; */
+}
+.slider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    margin-bottom: 2rem;
+    max-height: 3rem;
+}
+
+.parametersParent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.parameters{
+    font-size: 1.5rem;
+    color: #243c76;
+    padding: 4rem 0 2rem 0;
+}
+.threshold{
+    font-size: 1.5rem;
+    color: #243c76;
+    padding: 4rem 0 1rem 0;
+}
+
+.result{
+    font-size: 1.5rem;
+    color: #243c76;
+    padding: 2rem 0 2rem 0;
+}
+
+.atsParent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.navbar{
+    height: 80px;
+    width: 100%;
+    background-color: #e74860;
+}
+
+.buttonGroup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    padding-bottom: 3rem;
+}

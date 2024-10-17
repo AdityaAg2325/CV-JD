@@ -1,0 +1,27 @@
+.btn {
+    background-color: #e74860;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    width: 8rem;
+  }
+  
+  .btn:hover {
+    background-color: #243c76;
+    transition: 0.8s all ease;
+  }
+  
+  .btn h4 {
+    margin: 0%;
+  }
+
+  .match{
+    margin-top: 2rem;
+  }
+
+  .view{
+    width: 15rem;
+  }
