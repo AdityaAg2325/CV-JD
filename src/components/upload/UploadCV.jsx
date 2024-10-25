@@ -14,9 +14,7 @@ const UploadCV = ({setLoading, cvFile, setCvFile}) => {
   const [success, setSuccess] = useState("")
 
   const handleCvUpload = (file) => {
-    console.log(file);
     setCvFile(file);
-    console.log(cvFile);
   };
 
   useEffect(() => {
