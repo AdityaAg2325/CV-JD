@@ -1,38 +1,12 @@
-// import React, {useState} from 'react'
-// import Box from '@mui/material/Box';
-// import Slider from '@mui/material/Slider';
-
-// const InputSlider = () => {
-
-//     function valuetext(value) {
-//         return {value};
-//       }
-
-//     return (
-//         <Box sx={{ width: 300 }}>
-//       <Slider
-//         aria-label="Temperature"
-//         defaultValue={30}
-//         getAriaValueText={valuetext}
-//         valueLabelDisplay="auto"
-//         shiftStep={30}
-//         step={10}
-//         marks
-//         min={50}
-//         max={100}
-//       />
-//     </Box>
-//       );
-// }
-
-// export default InputSlider
-
-
 import React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
-const InputSlider = () => {
+const InputSlider = ({ threshold, setThreshold }) => {
+
+  const handleSliderChange = (event, newValue) => {
+    setThreshold(newValue); 
+  };
 
   function valuetext(value) {
     return `${value}`;
@@ -42,7 +16,8 @@ const InputSlider = () => {
     <Box sx={{ width: 300 }}>
       <Slider
         aria-label="Custom Slider"
-        defaultValue={50}
+        value={threshold} 
+        onChange={handleSliderChange}
         getAriaValueText={valuetext}
         valueLabelDisplay="auto"
         step={10}
@@ -56,12 +31,13 @@ const InputSlider = () => {
           },
           '& .MuiSlider-valueLabel': {
             backgroundColor: '#243c76',
-            color: 'white',              
+            color: 'white',
           }
         }}
       />
     </Box>
   );
-}
+};
 
 export default InputSlider;
+

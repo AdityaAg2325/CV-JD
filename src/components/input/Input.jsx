@@ -4,18 +4,17 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import "./Input.css";
 
-const Input = () => {
-  const [skills, setSkills] = useState(34);
-  const [experience, setExperience] = useState(33);
-  const [relevance, setRelevance] = useState(33);
+const Input = ({skills, setSkills, relevance, setRelevance, experience, setExperience}) => {
   const [error, setError] = useState("");
 
   const handleChange = (setter, value) => {
-    const numValue = Number(value);
-    if (numValue >= 0) {
-      setter(numValue);
-    }
+    const numericValue = value.replace(/[^0-9]/g, "");
+    
+    const numValue = numericValue === "0" ? numericValue : numericValue.replace(/^0+/, "");
+    
+    setter(Number(numValue));
   };
+
 
   const total = skills + experience + relevance;
 
@@ -41,7 +40,7 @@ const Input = () => {
           id="skills-input "
           label="Skills"
           variant="standard"
-          type="number"
+          type="text"
           value={skills}
           onChange={(e) => handleChange(setSkills, e.target.value)}
           InputLabelProps={{
@@ -56,7 +55,7 @@ const Input = () => {
           id="experience-input"
           label="Experience"
           variant="standard"
-          type="number"
+          type="text"
           value={experience}
           onChange={(e) => handleChange(setExperience, e.target.value)}
           InputLabelProps={{
@@ -71,7 +70,7 @@ const Input = () => {
           id="relevance-input"
           label="Relevance"
           variant="standard"
-          type="number"
+          type="text"
           value={relevance}
           onChange={(e) => handleChange(setRelevance, e.target.value)}
           InputLabelProps={{

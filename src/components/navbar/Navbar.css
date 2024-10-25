@@ -1,0 +1,17 @@
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    /* padding: 0 30px; */
+    color: white;
+    width: 100%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+  
+  .navbar-logo img {
+    height: 30px;
+    margin: 1rem 0;
+    width: 100%;
+  }
+ 

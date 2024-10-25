@@ -11,3 +11,23 @@ root.render(
   </Router>
 );
 
+// {
+//   "Basic_Info": {
+//       "8": {
+//           "CV": "cv.pdf",
+//           "Job Description": "jd_data_enginerr.pdf",
+//           "Total Score": 80,
+//           "Decision": "Selected",
+//           "Threshold_Score": 80
+//       }
+//   },
+//   "Details": {
+//       "8": {
+//           "Skill Match": 80,
+//           "Experience Match": 75,
+//           "Anomalies": -10,
+//           "Relevance": 85,
+//           "PDF_PATH": "Reports\\cv_report.pdf"
+//       }
+//   }
+// }

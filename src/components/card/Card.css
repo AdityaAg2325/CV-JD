@@ -51,6 +51,13 @@
   }
 
   .data-card:hover{
+
     box-shadow: 0 4px 8px rgba(21, 12, 148, 0.196);
   }
   
+  .button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
