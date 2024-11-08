@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css';
+import CustomTable from './pages/ApplicantList';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <ToastContainer />
       <Routes>
       <Route path="/ats-home" element={<AtsHome />}/>
+      <Route path="/ats-listing" element={<CustomTable/>}/>
       </Routes>
     </div>
   );
