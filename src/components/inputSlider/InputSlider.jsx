@@ -40,4 +40,3 @@ const InputSlider = ({ threshold, setThreshold }) => {
 };
 
 export default InputSlider;
-
