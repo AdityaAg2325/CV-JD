@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css';
 import PdfTest from './components/PdfTest';
+import CustomTable from './pages/ApplicantList';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
       <Route path="/ats-home" element={<AtsHome />}/>
       <Route path='/pdf' element={<PdfTest />} />
+      <Route path="/ats-listing" element={<CustomTable/>}/>
       </Routes>
     </div>
   );

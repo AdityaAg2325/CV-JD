@@ -82,3 +82,17 @@ export async function downloadReport(report_id) {
     throw new Error(error?.response?.data?.message || 'Error downloading report');
   }
 }
+export async function listing(start_date,end_date){
+  try {
+    const response = await app.get('/get_datewise_data/',{
+      params: {
+        start_date: start_date,
+        end_date: end_date
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error?.response?.data?.message || 'Error fetching data');
+  }
+}
+
