@@ -1,6 +1,33 @@
 .atsContainer{
     font-size: 5rem;
-    width: 85rem;
+    width: 80%;
+    height:50%;
     margin: 2rem 0;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+}
+
+.uppercontainer{
+    margin-top:3rem;
+    margin-bottom:3rem;
+    
+    display:flex;
+    gap:4rem;
+    justify-content:center;
+    align-items:center;
+}
+
+.MuiBox-root {
+    margin-left:0;
+    margin-right:0;
+}
+
+.fetchButton{
+    position:absolute;
+    top:1%;
+}
+
+.datepickercss{
+    margin-left:0;
+    margin-right:0;
 }
