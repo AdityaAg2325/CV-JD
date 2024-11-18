@@ -14,13 +14,17 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import cssAtsHome from "./AtsHome.module.css";
 import listCss from "./ApplicantList.module.css";
-import { listing } from "../service/service"; // Assuming you have this service for fetching data
+import { listing, downloadReport } from "../service/service";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import dayjs from "dayjs";
 import DateRangePicker from "../components/datepicker/DatePicker";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import Loader from "../components/loader/Loader";
 
-function CustomTable() {
+function CustomTable({ row }) {
+  const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -29,8 +33,20 @@ function CustomTable() {
   const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(7, "day")]);
   const [showTable, setShowTable] = useState(false);
 
+  const navigate = useNavigate();
+  const handleReportClick = async () => {
+    try {
+      const response = await downloadReport(row.id);
+      const fileURL = URL.createObjectURL(response);
+      window.open(fileURL);
+    } catch (error) {
+      toast.error("Error downloading report");
+    }
+  };
+
   const fetchData = async () => {
     try {
+      setLoading(true);
       const [startDate, endDate] = dateRange;
       const data = await listing(
         startDate.format("YYYY-MM-DD"),
@@ -43,11 +59,13 @@ function CustomTable() {
         decision: data.Basic_Info[key].Decision,
         pdfPath: data.Details[key] ? data.Details[key].PDF_PATH : null,
       }));
-
+      toast.success("Data fetched successfully!");
       setRows(transformedRows);
       setShowTable(true);
     } catch (err) {
-      console.log(err.message);
+      toast.error("Error fetching data");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,32 +89,42 @@ function CustomTable() {
   });
 
   return (
+    <>
+    {loading && <Loader />}
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={cssAtsHome.atsParent}>
         <Navbar />
         <div className={listCss.atsContainer}>
+          <div className={listCss.goBackParent}>
+          <div className={listCss.goBack} onClick={() => navigate(-1)}>{'<-'} Go Back</div></div>
           <div className={cssAtsHome.heading}>Applicant History</div>
           <div className={listCss.uppercontainer}>
-            <div className="datepickercss">
-            <DateRangePicker 
-              value={dateRange}
-              onChange={(newValue) => {
-                if (newValue) {
-                  setDateRange(newValue);
-                }
-              }}
-            />
+            <div className={listCss.dateFilterParent}>
+              <div className={listCss.selectDateRange}>Select Date Range: </div>
+              <div className="datepickercss">
+                <DateRangePicker
+                  value={dateRange}
+                  onChange={(newValue) => {
+                    if (newValue) {
+                      setDateRange(newValue);
+                    }
+                  }}
+                />
+              </div>
             </div>
             <Button
               className="fetchButton"
               variant="contained"
-              onClick={() => fetchData()} // Set showTable to trigger fetchData
+              onClick={() => fetchData()} 
             >
               ENTER
             </Button>
           </div>
           {showTable && (
-            <div className="tableWrapper" style={{ width: "90%", margin: "0 auto" }}>
+            <div
+              className="tableWrapper"
+              style={{ width: "90%", margin: "0 auto" }}
+            >
               <TableContainer
                 component={Paper}
                 className={cssAtsHome.atsContainer}
@@ -140,11 +168,21 @@ function CustomTable() {
                 >
                   <TableHead>
                     <TableRow>
-                      <TableCell>S.No</TableCell>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Job Description</TableCell>
-                      <TableCell>Decision</TableCell>
-                      <TableCell>Report</TableCell>
+                      <TableCell sx={{ color: "#243c76", fontWeight: "bold" }}>
+                        S.No
+                      </TableCell>
+                      <TableCell sx={{ color: "#243c76", fontWeight: "bold" }}>
+                        Name
+                      </TableCell>
+                      <TableCell sx={{ color: "#243c76", fontWeight: "bold" }}>
+                        Job Description
+                      </TableCell>
+                      <TableCell sx={{ color: "#243c76", fontWeight: "bold" }}>
+                        Decision
+                      </TableCell>
+                      <TableCell sx={{ color: "#243c76", fontWeight: "bold" }}>
+                        Report
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -165,20 +203,22 @@ function CustomTable() {
                           </TableCell>
                           <TableCell>{row.cv}</TableCell>
                           <TableCell>{row.jd}</TableCell>
-                          <TableCell>{row.decision}</TableCell>
+                          <TableCell sx={{ fontWeight: "bold" }}>
+                            {row.decision}
+                          </TableCell>
                           <TableCell>
-                            <Button
-                              variant="contained"
-                              size="small"
-                              onClick={() => {
-                                const link = document.createElement("a");
-                                link.href = row.pdfPath;
-                                link.download = row.pdfPath.split("/").pop(); // Extract the file name from the URL
-                                link.click();
+                            <button
+                              onClick={handleReportClick}
+                              style={{
+                                color: "#243c76",
+                                background: "none",
+                                border: "none",
+                                fontWeight: "bold",
+                                cursor: "pointer",
                               }}
                             >
-                              Download
-                            </Button>
+                              View PDF
+                            </button>
                           </TableCell>
                         </TableRow>
                       ))}
@@ -199,6 +239,7 @@ function CustomTable() {
         </div>
       </div>
     </LocalizationProvider>
+    </>
   );
 }
 

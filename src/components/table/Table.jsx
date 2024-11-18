@@ -41,7 +41,6 @@ function Row(props) {
       setLoading(true);
       const response = await downloadReport(row.id);
       const fileURL = URL.createObjectURL(response);
-      console.log(fileURL);
       window.open(fileURL);
     } catch (error) {
       toast.error('Error downloading report');

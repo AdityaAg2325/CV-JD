@@ -10,6 +10,7 @@ import { generateReport } from "../service/service";
 import Loader from "../components/loader/Loader";
 import Navbar from "../components/navbar/Navbar";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const AtsHome = () => {
   const [threshold, setThreshold] = useState(70);
@@ -17,26 +18,9 @@ const AtsHome = () => {
   const [skills, setSkills] = useState(34);
   const [relevance, setRelevance] = useState(33);
   const [loading, setLoading] = useState(false);
-  const [reportData, setReportData] = useState({});
+  const [reportData, setReportData] = useState();
   const [cvFile, setCvFile] = useState([]);
   const [jdFile, setJdFile] = useState(null);
-
-  useEffect(() => {
-    try {
-      setLoading(true);
-      const initialData = generateReport(
-        skills,
-        experience,
-        relevance,
-        threshold
-      );
-      setReportData(initialData);
-    } catch (error) {
-      toast.error("Error in generating reports!");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
   const handleMatch = async () => {
     if (cvFile.length > 0 && jdFile) {
@@ -107,12 +91,12 @@ const AtsHome = () => {
               </Button>
             </div>
           </div>
-          <div className={cssAtsHome.result}>Generated Results</div>
+          {reportData && <div className={cssAtsHome.result}>Generated Results</div>}
           {reportData && <Table data={reportData} setLoading={setLoading} />}
           <div className={cssAtsHome.buttonGroup}>
-            <Button type="submit" className="login-btn match view">
-              View History
-            </Button>
+            <Link to="/ats-listing">
+              <Button className="login-btn match view">View History</Button>
+            </Link>
           </div>
         </div>
       </div>
