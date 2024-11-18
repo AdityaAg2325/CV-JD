@@ -1,7 +1,6 @@
+ import axios from 'axios';
 
-import axios from 'axios';
-
-const base_url = 'https://zxgn4hjm-8000.inc1.devtunnels.ms';
+const base_url = 'https://zxgn4hjm-8000.inc1.devtunnels.ms/';
 const app = axios.create({
     baseURL: base_url,
     headers: {
@@ -45,6 +44,15 @@ export async function getReport() {
     }
   }
 
+/**
+ * Generates the report based on given parameters
+ * @param {number} skill_weight the weight to be given to skills
+ * @param {number} experience_weight the weight to be given to experience
+ * @param {number} relevance_weight the weight to be given to relevance
+ * @param {number} threshold_score the threshold score
+ * @returns {Object} report
+ */
+
 export async function generateReport(skill_weight, experience_weight, relevance_weight, threshold_score) {
   try {
     const response = await app.get('/start/', {
@@ -60,3 +68,31 @@ export async function generateReport(skill_weight, experience_weight, relevance_
     throw new Error(error?.response?.data?.message || 'Error generating report');
   }
 }
+
+export async function downloadReport(report_id) {
+  try {
+    const response = await app.get('/get_report/', {
+      params: {
+        report_id: Number(report_id)
+      },
+      responseType: 'blob',
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error?.response?.data?.message || 'Error downloading report');
+  }
+}
+export async function listing(start_date, end_date){
+  try {
+    const response = await app.get('/get_datewise_data/',{
+      params: {
+        start_date: start_date,
+        end_date: end_date
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error?.response?.data?.message || 'Error fetching data');
+  }
+}
+

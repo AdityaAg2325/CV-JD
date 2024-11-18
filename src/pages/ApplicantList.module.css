@@ -1,0 +1,59 @@
+.atsContainer{
+    font-size: 5rem;
+    width: 85rem;
+    min-height: 37rem;
+    margin: 2rem 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.selectDateRange{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #243c76;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.dateFilterParent{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap: 4rem;
+}
+
+.uppercontainer{
+    margin-top:3rem;
+    margin-bottom:3rem;
+    display:flex;
+    gap:6rem;
+    justify-content:center;
+    align-items:center;
+}
+.goBackParent{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.goBack{
+    font-size: 1rem;
+    padding: 3rem 0 0 3rem;
+    color: #e74860;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.MuiBox-root {
+    margin-left:0;
+    margin-right:0;
+}
+
+.fetchButton{
+    position:absolute;
+    top:1%;
+}
+
+.datepickercss{
+    margin-left:0;
+    margin-right:0;
+}

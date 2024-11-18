@@ -7,43 +7,39 @@ import FileUpload from "../fileUpload/FileUpload";
 import { Typography } from "@mui/material";
 import { toast } from "react-toastify";
 
-
-const UploadCV = ({setLoading, cvFile, setCvFile}) => {
-  
+const UploadCV = ({ setLoading, cvFile, setCvFile }) => {
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("")
+  const [success, setSuccess] = useState("");
 
   const handleCvUpload = (file) => {
-    console.log(file);
     setCvFile(file);
-    console.log(cvFile);
   };
 
   useEffect(() => {
     if (cvFile.length === 0) {
       setError("Please Upload atleast one resume!");
-      setSuccess('')
+      setSuccess("");
     } else {
       setError("");
-      setSuccess(`${cvFile.length} files selected!`)
+      setSuccess(`${cvFile.length} files selected!`);
     }
   }, [cvFile]);
 
   const handleUpload = async () => {
     if (cvFile.length > 0) {
-    try {
-      setLoading(true)
-      const data = await uploadCv(cvFile);
-      console.log(data);
-      toast.success("CV uploaded successfully")
-    } catch (error) {
-      toast.error(`Error uploading CV}`)
-    } finally {
-      setLoading(false)
+      try {
+        setLoading(true);
+        const data = await uploadCv(cvFile);
+        console.log(data);
+        toast.success("CV uploaded successfully");
+      } catch (error) {
+        toast.error(`Error uploading CV}`);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      toast.error("Please select a file to upload!");
     }
-  } else {
-    toast.error("Please select a file to upload!")
-  }
   };
 
   return (
@@ -58,13 +54,12 @@ const UploadCV = ({setLoading, cvFile, setCvFile}) => {
             value={cvFile}
             onChange={handleCvUpload}
             id={"upload-cv"}
-            multiple = {true}
+            multiple={true}
           />
           <Button
             type="button"
             className="login-btn upload"
             onClick={handleUpload}
-            
           >
             Upload
           </Button>
